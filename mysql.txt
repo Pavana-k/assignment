@@ -1,0 +1,100 @@
+create database pavanacare;
+use pavzcare;
+
+Create Table BoneStage (
+    -> id INT(6),
+    -> name VARCHAR(30),
+    -> stage VARCHAR(40)
+    -> ,
+    -> primary key(id)
+    -> );
+describe BoneStage;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(6)      | NO   | PRI | NULL    |       |
+| name  | varchar(30) | YES  |     | NULL    |       |
+| stage | varchar(40) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+create table bone ( id INT(4),bone INT(5), stages VARCHAR(255 ), primary key(id), foreign key(bone) references BoneStage(id) );
+describe bone;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int(4)       | NO   | PRI | NULL    |       |
+| bone   | int(5)       | YES  | MUL | NULL    |       |
+| stages | varchar(255) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+create table consultations (
+    -> IdConsultation int(6),
+    -> personalno int(6),
+    -> doc int(6),
+    -> weight int(6),
+    -> height int(6),
+    -> diagnostic varchar(10),
+    -> selectedbones int(8),
+    -> realscore varchar(10),
+    -> maturityscore int(8),
+    -> boneage int(8),
+    -> Physician varchar(10),foreign key(personalno) references Patients(PersonalNo),
+    -> foreign key(Physician) references physician(name)
+    -> );
+    describe consultations;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| IdConsultation | int(6)      | YES  |     | NULL    |       |
+| personalno     | int(6)      | YES  | MUL | NULL    |       |
+| doc            | int(6)      | YES  |     | NULL    |       |
+| weight         | int(6)      | YES  |     | NULL    |       |
+| height         | int(6)      | YES  |     | NULL    |       |
+| diagnostic     | varchar(10) | YES  |     | NULL    |       |
+| selectedbones  | int(8)      | YES  |     | NULL    |       |
+| realscore      | varchar(10) | YES  |     | NULL    |       |
+| maturityscore  | int(8)      | YES  |     | NULL    |       |
+| boneage        | int(8)      | YES  |     | NULL    |       |
+| Physician      | varchar(10) | YES  | MUL | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+11 rows in set (0.00 sec)
+
+create Table Patients ( IdPatient int(6), personalno int(6), sname varchar(30), fname varchar(30), sex varchar(10), dob int(10), pob varchar(20), por varchar(20), Physician varchar(20), primary key(PersonalNo), foreign key(Physician) references physician(name) );
+describe Patients;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| IdPatient  | int(6)      | YES  |     | NULL    |       |
+| personalno | int(6)      | NO   | PRI | NULL    |       |
+| sname      | varchar(30) | YES  |     | NULL    |       |
+| fname      | varchar(30) | YES  |     | NULL    |       |
+| sex        | varchar(10) | YES  |     | NULL    |       |
+| dob        | int(10)     | YES  |     | NULL    |       |
+| pob        | varchar(20) | YES  |     | NULL    |       |
+| por        | varchar(20) | YES  |     | NULL    |       |
+| Physician  | varchar(20) | YES  | MUL | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+create table physician
+    -> (
+    -> id int(6),
+    -> name varchar(20),
+    -> password varchar(30)
+    -> ,
+    -> primary key(name)
+    -> );
+    describe physician;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(6)      | YES  |     | NULL    |       |
+| name     | varchar(20) | NO   | PRI | NULL    |       |
+| password | varchar(30) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+
